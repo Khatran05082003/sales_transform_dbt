@@ -1,0 +1,30 @@
+
+version: 2
+
+models:
+  - name: dim_sales_territory
+    columns:
+      - name: territory_key
+        description: "Mã định danh của lãnh thổ bán hàng"
+        tests:
+          - unique
+        type: integer
+      - name: territory_name
+        description: "Tên của lãnh thổ bán hàng"
+        type: string
+      - name: country_region_key
+        description: "Mã định danh của vùng quốc gia"
+        type: string
+      - name: country_region_name
+        description: "Tên của vùng quốc gia"
+        type: string
+      - name: group_name
+        description: "Tên của nhóm bán hàng"
+        type: string
+    description: "Bảng chi tiết về các lãnh thổ bán hàng"
+    tags:
+      - source: adventureworks2019
+      - source_table: Sales.SalesTerritory
+      - dimension
+    unique_key:
+      - territory_key
