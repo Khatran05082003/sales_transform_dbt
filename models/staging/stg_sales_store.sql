@@ -14,9 +14,9 @@ FROM  `adventureworks2019.Sales.Store`
 
   ,stg_sales_store__cast_type as (
   SELECT
-    cast(store_key AS integer) as store_key
-    ,cast(store_name as string) as store_name
-    ,cast(sales_person_key as integer) as sales_person_key
+    COALESCE(cast(store_key AS integer),0) as store_key
+    ,COALESCE(cast(store_name as string),'Undefined') as store_name
+    ,COALESCE(cast(sales_person_key as integer),0) as sales_person_key
   FROM stg_sales_store__rename
   )
   ,stg_sales_store__add_undefined_record as (
@@ -31,12 +31,6 @@ FROM  `adventureworks2019.Sales.Store`
     0 as store_key
     ,'Undefined' as store_name
     ,0 as sales_person_key
-
-  UNION ALL
-  SELECT
-    -1 as store_key
-    ,'Invalid' as store_name
-    ,-1 as sales_person_key
   )
 
 

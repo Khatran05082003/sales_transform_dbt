@@ -9,12 +9,13 @@ WITH stg_sales_customer AS (
 )
 ,stg_sales_customer__rename__cast_type AS (
   SELECT
-    CAST(CustomerID AS INTEGER) as customer_key
+    COALESCE(CAST(CustomerID AS INTEGER), 0) as customer_key
     ,CAST(CASE WHEN PersonID = 'NULL' THEN 0 ELSE CAST(PersonID AS INTEGER) END AS INTEGER) AS person_key
-    ,SAFE_CAST(StoreID AS INTEGER) AS store_key_customer
-    ,CAST(TerritoryID as INTEGER) AS customer_territory_key
-    ,is_reseller
+    ,COALESCE(SAFE_CAST(StoreID AS INTEGER), 0) AS store_key_customer
+    ,COALESCE(CAST(TerritoryID as INTEGER), 0) AS customer_territory_key
+    ,COALESCE(is_reseller, 'Undefined') as is_reseller
   FROM stg_sales_customer
+
 )
 ,stg_sales_customer_add_undefined_record AS (
   SELECT 
