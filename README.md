@@ -49,4 +49,5 @@ dec_project2: outputs: dev: dataset: --Name-of-your-dataset job_execution_timeou
 
 ![image](https://github.com/Khatran05082003/sales_transform_dbt/assets/102920168/e6d4770d-c548-4aa8-a757-20388a6e65f4)
 
+![image](https://github.com/user-attachments/assets/86149063-7161-4617-a459-798813bc9e11)
 
